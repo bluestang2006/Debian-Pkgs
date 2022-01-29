@@ -1,0 +1,49 @@
+Source: seatd
+Section: admin
+Priority: optional
+Maintainer: Mark Hindley <leepen@debian.org>
+Standards-Version: 4.6.0
+Vcs-Git: https://git.devuan.org/devuan/seatd.git -b debian/master
+Vcs-Browser: https://git.devuan.org/devuan/seatd
+Homepage: https://git.sr.ht/~kennylevinsen/seatd
+Rules-Requires-Root: no
+Build-Depends: debhelper-compat (= 13),
+	       meson,
+	       libsystemd-dev,
+	       pkg-config,
+	       scdoc (>= 1.9.7),
+
+Package: seatd
+Architecture: any
+Multi-Arch: foreign
+Pre-Depends: debconf, ${misc:Pre-Depends}
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         lsb-base (>= 3.1),
+Recommends: libseat1
+Description: minimal user, seat and session management daemon
+ Lightweight standalone implementation.
+ 
+Package: libseat1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+	 seatd | logind 
+Description: flexible user, seat and session management library
+ This library provides runtime access to user, seat and session management. The
+ backend server used is configurable at runtime. Currently implemented backends
+ are seatd, elogind or systemd-logind.
+
+Package: libseat-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         libseat1 (= ${binary:Version})
+Description: flexible user, seat and session management library (development files)
+ seatd session management development files.

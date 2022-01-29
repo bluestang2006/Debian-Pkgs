@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Ensure seatd-launch wrapper finds and runs seatd.
+SEATD_LOGLEVEL=debug seatd-launch -- pidof seatd
