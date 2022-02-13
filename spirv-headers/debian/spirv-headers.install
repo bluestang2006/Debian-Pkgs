@@ -1,0 +1,3 @@
+/usr/include/spirv/*
+/usr/share/cmake/SPIRV-Headers/*
+/usr/share/pkgconfig/SPIRV-Headers.pc
