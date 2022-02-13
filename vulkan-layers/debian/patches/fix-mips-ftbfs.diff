@@ -1,0 +1,17 @@
+Rename the variable until the upstream issue is fixed:
+
+https://github.com/KhronosGroup/Vulkan-ValidationLayers/issues/3607
+
+--- a/layers/best_practices_utils.cpp
++++ b/layers/best_practices_utils.cpp
+@@ -376,8 +376,8 @@ IMAGE_STATE_BP* BestPractices::GetImageU
+         IMAGE_STATE* image = Get<IMAGE_STATE>(vk_image);
+         state.image = image;
+         state.usages.resize(image->createInfo.arrayLayers);
+-        for (auto& mips : state.usages) {
+-            mips.resize(image->createInfo.mipLevels, IMAGE_SUBRESOURCE_USAGE_BP::UNDEFINED);
++        for (auto& vkmips : state.usages) {
++            vkmips.resize(image->createInfo.mipLevels, IMAGE_SUBRESOURCE_USAGE_BP::UNDEFINED);
+         }
+         return &state;
+     }
