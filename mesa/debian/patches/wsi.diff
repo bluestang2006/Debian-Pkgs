@@ -1,0 +1,22 @@
+diff --git a/src/vulkan/wsi/wsi_common_display.c b/src/vulkan/wsi/wsi_common_display.c
+index 3c9f3b1c32b..5bbb39a7acd 100644
+--- a/src/vulkan/wsi/wsi_common_display.c
++++ b/src/vulkan/wsi/wsi_common_display.c
+@@ -1037,7 +1037,7 @@ wsi_display_surface_get_present_modes(VkIcdSurfaceBase *surface,
+                           present_modes, present_mode_count);
+ 
+    vk_outarray_append_typed(VkPresentModeKHR, &conn, present) {
+-      *present = VK_PRESENT_MODE_FIFO_KHR;
++      *present = VK_PRESENT_MODE_IMMEDIATE_KHR;
+    }
+ 
+    return vk_outarray_status(&conn);
+@@ -1843,7 +1843,7 @@ _wsi_display_queue_next(struct wsi_swapchain *drv_chain)
+       int ret;
+       if (connector->active) {
+          ret = drmModePageFlip(wsi->fd, connector->crtc_id, image->fb_id,
+-                                   DRM_MODE_PAGE_FLIP_EVENT, image);
++                                   DRM_MODE_PAGE_FLIP_ASYNC | DRM_MODE_PAGE_FLIP_EVENT, image);
+          if (ret == 0) {
+             image->state = WSI_IMAGE_FLIPPING;
+             return VK_SUCCESS;

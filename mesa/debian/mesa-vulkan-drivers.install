@@ -1,0 +1,5 @@
+usr/share/vulkan/icd.d/*.json
+usr/share/vulkan/explicit_layer.d/*.json
+usr/lib/*/libvulkan_*.so
+usr/bin/*.py
+usr/lib/*/libVkLayer_MESA_overlay.so
