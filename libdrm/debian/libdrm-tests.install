@@ -1,0 +1,7 @@
+usr/bin/amdgpu*
+usr/bin/drmdevice
+usr/bin/modetest
+usr/bin/vbltest
+usr/bin/modeprint
+usr/bin/proptest
+usr/bin/tegra*
