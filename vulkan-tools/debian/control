@@ -1,0 +1,27 @@
+Source: vulkan-tools
+Priority: optional
+Maintainer: Debian X Strike Force <debian-x@lists.debian.org>
+Build-Depends: debhelper-compat (= 12),
+ cmake,
+ glslang-tools,
+ libvulkan-dev (>= 1.2.189.0),
+ libwayland-dev,
+ libx11-dev,
+ libxcb1-dev,
+ libxrandr-dev,
+ python3,
+Standards-Version: 4.5.0
+Section: libs
+Homepage: https://github.com/KhronosGroup/Vulkan-Tools
+Vcs-Git: https://salsa.debian.org/xorg-team/vulkan/vulkan-tools.git
+Vcs-Browser: https://salsa.debian.org/xorg-team/vulkan/vulkan-tools
+
+Package: vulkan-tools
+Architecture: linux-any
+Section: graphics
+Depends: ${shlibs:Depends}, ${misc:Depends},
+ libvulkan1,
+Breaks: vulkan-sdk-runtime,
+Replaces: vulkan-sdk-runtime,
+Description: Miscellaneous Vulkan utilities
+ This package provides utilities for Vulkan, including vulkaninfo.
