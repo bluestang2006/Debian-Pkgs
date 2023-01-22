@@ -1,0 +1,44 @@
+#!/usr/bin/make -f
+
+# Some variables:
+DEB_HOST_ARCH     ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
+DEB_HOST_ARCH_OS  ?= $(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
+DEB_HOST_ARCH_CPU ?= $(shell dpkg-architecture -qDEB_HOST_ARCH_CPU)
+
+confflags = \
+    -Db_lto=true \
+    -Dglvnd=true \
+    -Dllvm=disabled \
+    -Dplatforms=x11,wayland \
+    -Dvulkan-drivers=broadcom \
+    -Dgallium-drivers=kmsro,v3d,vc4,zink \
+    -Dgallium-extra-hud=true \
+    -Dvulkan-layers=overlay
+
+###
+### Actual build
+###
+
+override_dh_auto_configure:
+	meson debian/build \
+		--prefix=/usr \
+		--buildtype=release \
+		$(confflags)
+
+override_dh_auto_install:
+	DESTDIR=${CURDIR}/debian/tmp \
+	ninja -C debian/build install
+
+override_dh_missing:
+	dh_missing --fail-missing	
+
+override_dh_makeshlibs:
+	dh_makeshlibs -a -- -c4
+
+override_dh_auto_build:
+	ninja -j4 -C debian/build
+
+%:
+	dh $@ \
+		--builddirectory=debian/build/ \
+		--buildsystem=meson

@@ -1,0 +1,13 @@
+diff --git a/src/loader/loader_dri3_helper.c b/src/loader/loader_dri3_helper.c
+index 8e775a4735f..b257f3794b8 100644
+--- a/src/loader/loader_dri3_helper.c
++++ b/src/loader/loader_dri3_helper.c
+@@ -282,7 +282,7 @@ dri3_update_max_num_back(struct loader_dri3_drawable *draw)
+       if (draw->swap_interval == 0)
+          draw->max_num_back = 4;
+       else
+-         draw->max_num_back = 3;
++         draw->max_num_back = 2;
+ 
+       assert(draw->max_num_back <= LOADER_DRI3_MAX_BACK);
+       break;

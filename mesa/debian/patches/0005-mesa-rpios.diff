@@ -1,0 +1,17 @@
+diff --git a/src/gallium/drivers/v3d/v3d_screen.h b/src/gallium/drivers/v3d/v3d_screen.h
+index de2ce2c1601..a26edb1b1af 100644
+--- a/src/gallium/drivers/v3d/v3d_screen.h
++++ b/src/gallium/drivers/v3d/v3d_screen.h
+@@ -83,6 +83,12 @@ struct v3d_screen {
+         bool has_cache_flush;
+         bool has_perfmon;
+         bool nonmsaa_texture_size_limit;
++        bool ignore_scanout_usages;
++        bool ignore_scanout_usages_with_modifiers;
++        bool maintain_ignorable_scanout;
++
++        /* Are we running in an X session? */
++        bool has_x_session;
+ 
+         struct v3d_simulator_file *sim_file;
+ 
